@@ -1,0 +1,17 @@
+{
+    "name": "Milenur.Domain",
+    "rootNamespace": "",
+    "references": [
+        "GUID:458592be65a136a478057d85757e9fc3",
+        "GUID:099dc33e06b34954bb1fc8732c3cedde"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

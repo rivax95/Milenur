@@ -1,0 +1,16 @@
+{
+    "name": "Milenur.InterfaceAdapters",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2fe66cfe00205e6468e41cf58115905c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

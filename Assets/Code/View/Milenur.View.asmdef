@@ -1,0 +1,16 @@
+{
+    "name": "Milenur.View",
+    "rootNamespace": "",
+    "references": [
+        "GUID:437b6df9fd9f583459d9cae676d2dc2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
