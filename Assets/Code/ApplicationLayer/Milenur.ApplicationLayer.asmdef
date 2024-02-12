@@ -2,7 +2,9 @@
     "name": "Milenur.ApplicationLayer",
     "rootNamespace": "",
     "references": [
-        "GUID:2fe66cfe00205e6468e41cf58115905c"
+        "GUID:2fe66cfe00205e6468e41cf58115905c",
+        "GUID:0da6d172d18a54e4389d0dce1e1ffdf2",
+        "GUID:099dc33e06b34954bb1fc8732c3cedde"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
