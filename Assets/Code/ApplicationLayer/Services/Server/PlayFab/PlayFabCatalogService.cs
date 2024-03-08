@@ -12,14 +12,14 @@ namespace Code.ApplicationLayer.Services.Server.Gateways.Catalog
     {
         public Task<Optional<List<CatalogItem>>> GetItems(string calogId)
         {
-            var t = new TaskCompletionSource<Optional<List<CatalogItem>>>();
+            var taskCompletionSource = new TaskCompletionSource<Optional<List<CatalogItem>>>();
             var request = new GetCatalogItemsRequest()
             {
                 CatalogVersion = "Units"
             };
 
-            PlayFabClientAPI.GetCatalogItems(request, result => OnSuccess(result, t), error => OnError(error, t));
-            return Task.Run(() => t.Task);
+            PlayFabClientAPI.GetCatalogItems(request, result => OnSuccess(result, taskCompletionSource), error => OnError(error, taskCompletionSource));
+            return Task.Run(() => taskCompletionSource.Task);
         }
 
         protected void OnSuccess(GetCatalogItemsResult result, TaskCompletionSource<Optional<List<CatalogItem>>> taskCompletionSource)
