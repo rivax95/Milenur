@@ -41,7 +41,7 @@ namespace Code.ApplicationLayer.Services.Server.Gateways.Catalog
             return _items[catalogId];
         }
 
-        //Min 40:30
+        //Min 40-30 // Max 90
         private async Task GetItemsFromServer<T>(string catalogId)
         {
             var optionalItems = await _catalogService.GetItems(catalogId);

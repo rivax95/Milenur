@@ -7,5 +7,6 @@ namespace Code.Domain.DataAccess
     public interface UnitsDataAccess
     {
         Task<IReadOnlyList<Unit>> GetAllUnits();
+        Task AddUnitsToUser (string userId, List<UnitToAdd> units);
     }
 }

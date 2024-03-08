@@ -4,9 +4,11 @@ using ApplicationLayer.Services.Server.Gateways.ServerData;
 using Code.ApplicationLayer.DataAccess;
 using Code.ApplicationLayer.Services.Server;
 using Code.ApplicationLayer.Services.Server.Gateways.Catalog;
+using Code.ApplicationLayer.Services.Server.Gateways.Inventory;
 using Code.ApplicationLayer.Services.Server.PlayFab;
 using Code.Domain.Services.Server;
 using Code.Domain.UseCases;
+using Code.Domain.UseCases.Meta.LoadServerData;
 using UnityEngine;
 
 
@@ -34,11 +36,19 @@ namespace Code.UnityConfigurationAdapters.Installers
 
             var catalogGateway = new CatalogGatewayImpl(playFabCatalogService, unityJsonSerializer);
 
-            var unitsRepository = new UnitsRepository(catalogGateway);
+            var userInventoryService = new PlayFabUserInventoryService();
+            
+            var inventoryGateway = new InventoryGatewayImpl(userInventoryService);
+            
+            var unitsRepository = new UnitsRepository(catalogGateway,inventoryGateway);
 
-            var loadServerDataUseCase = new LoadServerDataUseCase(unitsRepository);
+            var loadServerDataUseCase = new LoadServerDataUseCase(unitsRepository,playfabLogin);
 //InitGame
-            var initializeGameUseCase = new InitializedGameUseCase(loginUseCase, loadUserDataUseCase, loadServerDataUseCase);
+            var initializeGameUseCase = new InitializedGameUseCase(
+                    loginUseCase, 
+                    loadUserDataUseCase,
+                    loadServerDataUseCase
+                    );
 
             initializeGameUseCase.InitGame();
         }

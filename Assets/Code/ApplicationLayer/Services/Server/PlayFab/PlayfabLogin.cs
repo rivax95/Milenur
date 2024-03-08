@@ -9,8 +9,9 @@ namespace Code.ApplicationLayer.Services.Server.PlayFab
 {
     public abstract class PlayfabLogin : AuthenticateService
     {
-        private string _userId;
-
+      
+        public string UserId { get; private set; }
+        
         public Task Authenticate()
         {
             var tcs = new TaskCompletionSource<bool>();
@@ -18,13 +19,13 @@ namespace Code.ApplicationLayer.Services.Server.PlayFab
 
             return tcs.Task;
         }
-        
+
         protected abstract void Login(TaskCompletionSource<bool> taskCompletionSource);
         
         protected void OnSuccess(LoginResult result, TaskCompletionSource<bool> taskCompletionSource)
         {
             taskCompletionSource.SetResult(true);
-            _userId = result.PlayFabId;
+            UserId = result.PlayFabId;
             Debug.Log("Login");
         }
 

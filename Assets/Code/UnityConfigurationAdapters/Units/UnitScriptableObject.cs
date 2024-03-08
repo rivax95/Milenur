@@ -14,9 +14,8 @@ namespace Code.UnityConfigurationAdapters.Units
     {
         [SerializeField] private string _id;
         [SerializeField] private string _name;
-        [SerializeField] private int _attack;
-        [SerializeField] private int _health;
-
+        [SerializeField] private UnitCustomData _customData;
+        
         [Button("Guardar en el Servidor")]
         public void SaveOnServer()
         {
@@ -28,7 +27,7 @@ namespace Code.UnityConfigurationAdapters.Units
                     {
                         ItemId = _id,
                         DisplayName = _name,
-                        CustomData = JsonUtility.ToJson(new UnitsCustomData(_health, _attack))
+                        CustomData = JsonUtility.ToJson(_customData)
                     }
                 },
                 CatalogVersion = "Units",
@@ -36,7 +35,7 @@ namespace Code.UnityConfigurationAdapters.Units
             PlayFabAdminAPI.UpdateCatalogItems(request, resultCallback => { Debug.Log("Saved"); }, error => throw new Exception(error.ErrorMessage));
         }
 
-        [Button("Cargar del Server")]
+        [Button("Cargar del Servidor")]
         public void LoadFromServer()
         {
             var request = new GetCatalogItemsRequest()
@@ -52,9 +51,8 @@ namespace Code.UnityConfigurationAdapters.Units
                 }
 
                 _name = catalogItem.DisplayName;
-                var customData = JsonUtility.FromJson<UnitsCustomData>(catalogItem.CustomData);
-                _attack = customData.Attack;
-                _health = customData.Health;
+                var customData = JsonUtility.FromJson<UnitCustomData>(catalogItem.CustomData);
+                _customData = customData;
 
                 Debug.Log($"{_id} Cargado");
                 UnityEditor.EditorUtility.SetDirty(this);
