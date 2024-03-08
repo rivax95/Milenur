@@ -1,23 +1,22 @@
 using System.Threading.Tasks;
-using Code.Domain.Services.Server;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.Device;
 
-namespace Code.ApplicationLayer.Services.Server
+namespace Code.ApplicationLayer.Services.Server.PlayFab
 {
-    public class PlayFabLoginAndroid : PlayfabLogin
+    public class PlayFabLoginIOs : PlayfabLogin
     {
         protected override void Login(TaskCompletionSource<bool> taskCompletionSource)
         {
-            var request = new LoginWithAndroidDeviceIDRequest()
+            var request = new LoginWithIOSDeviceIDRequest()
             {
                 CreateAccount = true,
-                AndroidDeviceId = SystemInfo.deviceUniqueIdentifier,
-                OS = SystemInfo.operatingSystem
+                OS = SystemInfo.operatingSystem,
+                DeviceId = SystemInfo.deviceUniqueIdentifier
             };
 
-            PlayFabClientAPI.LoginWithAndroidDeviceID(request, result =>
+            PlayFabClientAPI.LoginWithIOSDeviceID(request, result =>
                     OnSuccess(result, taskCompletionSource),
                 error => OnError(error, taskCompletionSource)
             );

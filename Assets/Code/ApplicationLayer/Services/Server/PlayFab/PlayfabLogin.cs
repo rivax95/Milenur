@@ -5,7 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
 
-namespace Code.ApplicationLayer.Services.Server
+namespace Code.ApplicationLayer.Services.Server.PlayFab
 {
     public abstract class PlayfabLogin : AuthenticateService
     {

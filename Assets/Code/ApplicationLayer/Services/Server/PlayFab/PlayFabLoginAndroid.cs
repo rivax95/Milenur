@@ -3,20 +3,20 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.Device;
 
-namespace Code.ApplicationLayer.Services.Server
+namespace Code.ApplicationLayer.Services.Server.PlayFab
 {
-    public class PlayFabLoginIOs : PlayfabLogin
+    public class PlayFabLoginAndroid : PlayfabLogin
     {
         protected override void Login(TaskCompletionSource<bool> taskCompletionSource)
         {
-            var request = new LoginWithIOSDeviceIDRequest()
+            var request = new LoginWithAndroidDeviceIDRequest()
             {
                 CreateAccount = true,
-                OS = SystemInfo.operatingSystem,
-                DeviceId = SystemInfo.deviceUniqueIdentifier
+                AndroidDeviceId = SystemInfo.deviceUniqueIdentifier,
+                OS = SystemInfo.operatingSystem
             };
 
-            PlayFabClientAPI.LoginWithIOSDeviceID(request, result =>
+            PlayFabClientAPI.LoginWithAndroidDeviceID(request, result =>
                     OnSuccess(result, taskCompletionSource),
                 error => OnError(error, taskCompletionSource)
             );

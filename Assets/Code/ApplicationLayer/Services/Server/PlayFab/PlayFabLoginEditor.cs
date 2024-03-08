@@ -1,10 +1,8 @@
-using System;
 using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
-using UnityEngine;
 
-namespace Code.ApplicationLayer.Services.Server
+namespace Code.ApplicationLayer.Services.Server.PlayFab
 {
     public class PlayFabLoginEditor : PlayfabLogin
     {
