@@ -5,6 +5,7 @@ using Code.ApplicationLayer.Services.Server.Dtos;
 using Code.ApplicationLayer.Services.Server.Gateways.Catalog;
 using Code.Domain.DataAccess;
 using Code.Domain.Entities;
+using UnityEngine;
 
 namespace Code.ApplicationLayer.DataAccess
 {
@@ -23,23 +24,26 @@ namespace Code.ApplicationLayer.DataAccess
         public async Task<IReadOnlyList<Unit>> GetAllUnits()
         {
             var unitsDtos = await _catalogGateway.GetItems<UnitsCustomData>(CatalogID);
-            _units = ParseDtoToEntity(unitsDtos);
 
+            _units = new List<Unit>(unitsDtos.Select(ParseUnits));
             return _units;
         }
 
-        private List<Unit> ParseDtoToEntity(IReadOnlyList<CatalogItemDto> unitsDtos)
+        private static Unit ParseUnits(CatalogItemDto unitDto)
         {
-            return new List<Unit>(unitsDtos.Select(unitDto =>
-            {
-                var customData = unitDto.GetCustomData<UnitsCustomData>();
-                return new Unit(
-                    unitDto.ID,
-                    unitDto.DisplayName,
-                    customData.Attack,
-                    customData.Health
-                );
-            }));
+            return ParseUnit(unitDto);
+        }
+
+        private static Unit ParseUnit(CatalogItemDto unitDto)
+        {
+            Debug.Log($"Parsing unit: {unitDto.ID}");
+            var customData = unitDto.GetCustomData<UnitsCustomData>();
+            return new Unit(
+                unitDto.ID,
+                unitDto.DisplayName,
+                customData.Attack,
+                customData.Health
+            );
         }
     }
 }

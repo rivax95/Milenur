@@ -7,5 +7,11 @@ namespace Code.ApplicationLayer.DataAccess
     {
         public int Health;
         public int Attack;
+
+        public UnitsCustomData(int health, int attack)
+        {
+            Health = health;
+            Attack = attack;
+        }
     }
 }
