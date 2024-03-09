@@ -1,12 +1,13 @@
 using System;
 using Code.SharedTypes.Units;
+using UnityEngine;
 
 namespace Code.ApplicationLayer.DataAccess
 {
     [Serializable]
     public class UnitCustomData
     {
-        [NonSerialized] private UnitAttributes customData;
+        [SerializeField] private UnitAttributes customData;
 
         public UnitAttributes Attributes => customData;
 

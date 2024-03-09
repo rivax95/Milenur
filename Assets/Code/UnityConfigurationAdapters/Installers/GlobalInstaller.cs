@@ -9,6 +9,7 @@ using Code.ApplicationLayer.Services.Server.PlayFab;
 using Code.Domain.Services.Server;
 using Code.Domain.UseCases;
 using Code.Domain.UseCases.Meta.LoadServerData;
+using NaughtyAttributes;
 using UnityEngine;
 
 
@@ -16,6 +17,7 @@ namespace Code.UnityConfigurationAdapters.Installers
 {
     public class GlobalInstaller : MonoBehaviour
     {
+        private LoadServerDataUseCase serverUseCase;
         private void Awake()
         {
 // Login
@@ -43,6 +45,7 @@ namespace Code.UnityConfigurationAdapters.Installers
             var unitsRepository = new UnitsRepository(catalogGateway,inventoryGateway);
 
             var loadServerDataUseCase = new LoadServerDataUseCase(unitsRepository,playfabLogin);
+            serverUseCase = loadServerDataUseCase;
 //InitGame
             var initializeGameUseCase = new InitializedGameUseCase(
                     loginUseCase, 
@@ -53,6 +56,11 @@ namespace Code.UnityConfigurationAdapters.Installers
             initializeGameUseCase.InitGame();
         }
 
+        [Button]
+        public void TestLoadServerData()
+        {
+            serverUseCase.Load();
+        }
         private AuthenticateService GetPlatFabLogin()
         {
 #if UNITY_EDITOR

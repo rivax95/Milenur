@@ -49,10 +49,13 @@ namespace Code.ApplicationLayer.DataAccess
         //Remember is better because if unittoadd class have any field change this method it would still work correctly (generic code!!)
         private static Dictionary<string, string> ParseFieldsToDictionary(UnitToAdd unit)
         {
+            Dictionary<string, string> DataParse = new Dictionary<string, string>();
             var type = unit.UnitState.GetType();
             var fieldInfos = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
 
-            return fieldInfos.ToDictionary(field => field.Name, field => field.GetValue(unit.UnitState).ToString());
+            DataParse= fieldInfos.ToDictionary(field => field.Name, field => field.GetValue(unit.UnitState).ToString());
+            
+            return DataParse;
         }
       
     }

@@ -7,7 +7,7 @@ namespace Code.Domain.DataAccess
 
         public readonly string Id;
 
-        public readonly UnitState UnitState;
+        public  UnitState UnitState;
 
         public UnitToAdd(string id, UnitState unitState)
         {

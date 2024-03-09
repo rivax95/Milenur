@@ -22,7 +22,7 @@ namespace Code.Domain.UseCases.Meta.LoadServerData
             await _unitsDataAccess.GetAllUnits();
             //Lo meto aqui para probar que funciona, ya le hare su use case
             await _unitsDataAccess.AddUnitsToUser(_authenticateService.UserId,
-                new List<UnitToAdd> { new UnitToAdd("Unit003", new UnitState(12, 1)) });
+                new List<UnitToAdd> { new ("Unit003", new UnitState(12, 1,"2")) });
         }
     }
 }
